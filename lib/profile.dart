@@ -1,22 +1,4 @@
-import 'dart:html';
-import 'dart:js_util';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Profile(),
-    );
-  }
-}
 
 class Profile extends StatelessWidget {
   @override
@@ -108,4 +90,3 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-

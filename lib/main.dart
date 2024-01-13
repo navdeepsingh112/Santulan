@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:green_quest/comingsoon.dart';
+import 'package:green_quest/forgot2.dart';
 import 'package:green_quest/home.dart';
 import 'package:green_quest/home1.dart';
 import 'package:green_quest/profile.dart';
 import 'package:green_quest/signin.dart';
+import 'package:green_quest/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage());
+        home: Comingsoon());
   }
 }
 
