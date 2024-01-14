@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:green_quest/signin.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  const Signup({Key? key}) : super(key: key);
 
   @override
   State<Signup> createState() => _SignupState();
 }
 
 class _SignupState extends State<Signup> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +33,7 @@ class _SignupState extends State<Signup> {
             ),
             SizedBox(height: 20.0),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(
@@ -37,30 +45,9 @@ class _SignupState extends State<Signup> {
             ),
             SizedBox(height: 16.0),
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
-                labelText: 'password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-              ),
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'OTP',
+                labelText: 'Password',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -85,7 +72,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                   onPressed: () {
-                    // Add your logic for the next button here
+                    _signup();
                   },
                   child: Text(
                     'Signup',
@@ -98,5 +85,40 @@ class _SignupState extends State<Signup> {
         ),
       ),
     );
+  }
+
+  void _signup() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    try {
+      // Create a new user
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Send verification email
+      await _auth.currentUser?.sendEmailVerification();
+
+      // Display a message to the user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Verification email sent. Please check your inbox.'),
+          duration: Duration(seconds: 5),
+        ),
+      );
+
+      // Additional signup logic here if needed
+
+      print('Signup successful');
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    } catch (e) {
+      // Handle signup errors
+      print('Error signing up: $e');
+    }
   }
 }

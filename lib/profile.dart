@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:green_quest/comingsoon.dart';
 
 class Profile extends StatelessWidget {
+  final List<String> buttonNames = [
+    'My stats',
+    'Profile Details',
+    'My coupons',
+    'FAQ',
+    'Settings',
+    'Verify yourself as an event organiser',
+    'About Us',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,23 +56,25 @@ class Profile extends StatelessWidget {
               ],
             ),
             SizedBox(height: 40.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomButton(text: 'My stats'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'Profile Details'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'My coupons'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'FAQ'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'Settings'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'Verify yourself as an event organiser'),
-                SizedBox(height: 15.0),
-                CustomButton(text: 'About Us'),
-              ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: buttonNames.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                    child: CustomButton(
+                      text: buttonNames[index],
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Comingsoon()),
+                        );
+                        // Add onPressed logic for each button
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -72,15 +85,15 @@ class Profile extends StatelessWidget {
 
 class CustomButton extends StatelessWidget {
   final String text;
+  final VoidCallback? onPressed;
 
-  const CustomButton({Key? key, required this.text}) : super(key: key);
+  const CustomButton({Key? key, required this.text, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        // Add onPressed logic for each button
-      },
+      onPressed: onPressed,
       child: Row(
         children: [
           SizedBox(width: 20.0),
