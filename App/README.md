@@ -1,6 +1,6 @@
-# green_quest
+# Santulan
 
-A new Flutter project.
+GDSC Solution Challenge'2024
 
 ## Getting Started
 
