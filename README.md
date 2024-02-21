@@ -17,6 +17,7 @@ Tired of feeling helpless in the face of climate change? Wish you could make a r
 - Plant the seeds of change
 - Cultivate your knowledge
 - Grow a supportive network
+  
 ## Acknowledgements
 
  - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
@@ -26,10 +27,10 @@ Tired of feeling helpless in the face of climate change? Wish you could make a r
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
+- [@Prisha](https://github.com/pk2409/pk2409)
+- [@Mankirat](https://github.com/MankiratSingh1315/MankiratSingh1315)
+- [@Navdeep](https://github.com/navdeepsingh112)
+- [@Akshit](https://github.com/abansal0310)
 ## API Reference
 
 #### Get all items
